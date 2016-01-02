@@ -17,7 +17,7 @@ import java.io.IOException;
  * Created by gishiru on 2016/01/01.
  */
 public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
-  private static final String URL_ROOT = "http://10.0.2.4:8080/_ah/api/";
+  private static final String URL_ROOT = "http://10.0.2.4:8080/_ah/api/";  // Localhost's IP address.
 
   private MyApi mMyApi = null;
   private Context mContext = null;
@@ -53,9 +53,9 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
   protected void onPostExecute(String s) {
     super.onPostExecute(s);
 
+    // Start activity and pass a joke.
     Intent intent = new Intent(mContext, JokeActivity.class);
     intent.putExtra(JokeActivity.EXTRA_KEY_JOKE, s);
     mContext.startActivity(intent);
-
   }
 }

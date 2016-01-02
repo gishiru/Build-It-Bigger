@@ -22,14 +22,11 @@ import com.google.api.server.spi.config.ApiNamespace;
   )
 )
 public class MyEndpoint {
-
-    /** A simple endpoint method that takes a name and says Hi back */
     @ApiMethod(name = "sayJoke")
     public MyBean sayJoke() {
         MyBean response = new MyBean();
-        response.setData(JokeTelling.tellAJoke());
+        response.setData(JokeTelling.tellAJoke());  // Retrieve from Java library.
 
         return response;
     }
-
 }

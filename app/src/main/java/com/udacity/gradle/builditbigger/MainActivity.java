@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public void tellJoke(View view) {
+    // Retrieve joke from GCE module.
     new EndpointsAsyncTask().execute(this);
   }
 }
