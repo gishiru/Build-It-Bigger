@@ -1,14 +1,15 @@
 package com.udacity.gradle.builditbigger.api;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.example.joketelling.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.joketelling.JokeActivity;
 
 import java.io.IOException;
 
@@ -52,6 +53,9 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
   protected void onPostExecute(String s) {
     super.onPostExecute(s);
 
-    Toast.makeText(mContext, s, Toast.LENGTH_SHORT).show();
+    Intent intent = new Intent(mContext, JokeActivity.class);
+    intent.putExtra(JokeActivity.EXTRA_KEY_JOKE, s);
+    mContext.startActivity(intent);
+
   }
 }

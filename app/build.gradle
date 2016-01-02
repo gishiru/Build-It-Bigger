@@ -22,8 +22,6 @@ android {
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
-  // Added for Java library.
-  compile project(':joketellinglib')
   // Added for Android library.
   compile project(':joketelling')
   compile 'com.android.support:appcompat-v7:23.1.1'
