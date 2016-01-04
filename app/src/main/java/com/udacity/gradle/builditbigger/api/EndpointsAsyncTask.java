@@ -19,7 +19,9 @@ import java.io.IOException;
 public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
   private static final String URL_ROOT = "http://10.0.2.4:8080/_ah/api/";  // Localhost's IP address.
 
+  private EndpointsAsyncTaskListener mListener = null;
   private MyApi mMyApi = null;
+
   private Context mContext = null;
 
   @Override
@@ -53,9 +55,22 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
   protected void onPostExecute(String s) {
     super.onPostExecute(s);
 
-    // Start activity and pass a joke.
-    Intent intent = new Intent(mContext, JokeActivity.class);
-    intent.putExtra(JokeActivity.EXTRA_KEY_JOKE, s);
-    mContext.startActivity(intent);
+    if (mListener != null) {
+      mListener.onCompleted(s);
+    } else {
+      // Start activity and pass a joke.
+      Intent intent = new Intent(mContext, JokeActivity.class);
+      intent.putExtra(JokeActivity.EXTRA_KEY_JOKE, s);
+      mContext.startActivity(intent);  // Calling this in android test causes runtime exception.
+    }
+  }
+
+  public EndpointsAsyncTask setListener(EndpointsAsyncTaskListener listener) {
+    mListener = listener;
+    return this;
+  }
+
+  public interface EndpointsAsyncTaskListener {
+    void onCompleted(String joke);
   }
 }
