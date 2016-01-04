@@ -46,7 +46,7 @@ public class MainActivityFragment extends Fragment {
           mInterstitialAd.show();
         } else {
           // Retrieve joke from GCE module.
-          new EndpointsAsyncTask().execute(getActivity());
+          new EndpointsAsyncTask(getActivity()).execute(getActivity());
         }
       }
     });
@@ -59,7 +59,7 @@ public class MainActivityFragment extends Fragment {
         requestNewInterstitial();
 
         // Retrieve joke from GCE module.
-        new EndpointsAsyncTask().execute(getActivity());
+        new EndpointsAsyncTask(getActivity()).execute(getActivity());
       }
     });
 

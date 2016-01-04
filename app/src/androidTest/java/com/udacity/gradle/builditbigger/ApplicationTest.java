@@ -25,7 +25,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
   protected void setUp() throws Exception {
     mSignal = new CountDownLatch(COUNT_LATCH);  // Allows main thread to wait until a set of
                                                 // operations being performed in background thread.
-    mTask = new EndpointsAsyncTask();
+    mTask = new EndpointsAsyncTask(null);
   }
 
   @Override
