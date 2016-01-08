@@ -38,3 +38,17 @@ dependencies {
   freeCompile 'com.google.android.gms:play-services-ads:8.4.0'
   compile project(path: ':backend', configuration: 'android-endpoints')
 }
+
+task startServer(dependsOn: tasks.getByPath(':backend:appengineRun')) {
+  finalizedBy 'runTest'
+  println 'startServer'
+}
+
+task myTask(dependsOn: 'startServer') {
+  finalizedBy tasks.getByPath(':backend:appengineStop')
+  println 'myTask'
+}
+
+task runTest(dependsOn: "test") {
+  println 'runTest'
+}
